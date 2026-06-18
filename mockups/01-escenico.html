@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS Técnica - Escénico</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background: #0a0a0a;
+  overflow-x: hidden;
+}
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #fff;
+}
+.logo span { color: #ff2d95; }
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+nav a:hover { color: #ff2d95; }
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, #1a0a12 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, #2d0f1e 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, #1a0510 0%, transparent 40%),
+    linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff2d95' fill-opacity='0.03'%3E%3Cpath d='M404 0H0v404h404V0zm-2 2H2v400h400V2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  opacity: 0.5;
+}
+.hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 20px; }
+.hero-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  border: 1px solid rgba(255,45,149,0.4);
+  border-radius: 50px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ff2d95;
+  margin-bottom: 30px;
+  background: rgba(255,45,149,0.08);
+}
+.hero h1 {
+  font-size: 82px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 10px;
+  text-shadow: 0 0 40px rgba(255,45,149,0.3);
+}
+.hero h1 span { color: #ff2d95; }
+.hero .tagline {
+  font-size: 28px;
+  font-weight: 300;
+  color: #999;
+  margin-bottom: 8px;
+}
+.hero .sub {
+  font-size: 15px;
+  color: #666;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+.cta-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 16px 48px;
+  background: #ff2d95;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.3s;
+  box-shadow: 0 0 30px rgba(255,45,149,0.4);
+}
+.btn-primary:hover {
+  background: #ff1a88;
+  box-shadow: 0 0 50px rgba(255,45,149,0.6);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  border-color: #ff2d95;
+  color: #ff2d95;
+}
+
+/* Stats bar */
+.stats {
+  padding: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
+}
+.stat { text-align: center; }
+.stat-num {
+  font-size: 36px;
+  font-weight: 900;
+  color: #ff2d95;
+  letter-spacing: 2px;
+}
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Services */
+.services {
+  padding: 100px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ff2d95;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  letter-spacing: -1px;
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+.service-card {
+  padding: 40px 30px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.4s;
+  background: rgba(255,255,255,0.02);
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ff2d95;
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+  border-color: rgba(255,45,149,0.3);
+  background: rgba(255,45,149,0.05);
+  transform: translateY(-4px);
+}
+.service-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+.service-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.service-card p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Contact */
+.contact {
+  padding: 80px 60px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,45,149,0.05) 0%, transparent 100%);
+  border-top: 1px solid rgba(255,45,149,0.1);
+}
+.contact h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.contact p {
+  color: #888;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+.social-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.social-link {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.3s;
+}
+.social-link:hover {
+  border-color: #ff2d95;
+  color: #ff2d95;
+  box-shadow: 0 0 20px rgba(255,45,149,0.2);
+}
+
+/* Footer */
+footer {
+  padding: 30px 60px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+/* Light FX */
+.light-fx {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+.light-fx.l1 { background: #ff2d95; top: -50px; right: -50px; animation: float 6s ease-in-out infinite; }
+.light-fx.l2 { background: #ff2d95; bottom: -50px; left: -50px; animation: float 8s ease-in-out infinite reverse; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+@media (max-width: 768px) {
+  header { padding: 20px 24px; flex-direction: column; gap: 12px; }
+  nav a { margin: 0 10px; font-size: 11px; }
+  .hero h1 { font-size: 42px; letter-spacing: 4px; }
+  .hero .tagline { font-size: 18px; }
+  .services, .contact { padding: 60px 24px; }
+  .stats { gap: 30px; padding: 40px 24px; }
+  .service-grid { grid-template-columns: 1fr 1fr; }
+  .cta-group { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">GS<span>TÉCNICA</span></div>
+  <nav>
+    <a href="#">Servicios</a>
+    <a href="#">Galería</a>
+    <a href="#">Contacto</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="light-fx l1"></div>
+  <div class="light-fx l2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Rosario & Alrededores</div>
+    <h1>GS<span>TÉCNICA</span></h1>
+    <p class="tagline">Transformamos espacios en experiencias</p>
+    <p class="sub">Sonido · Iluminación · DJ · VJ · Diseño Profesional</p>
+    <div class="cta-group">
+      <a href="#" class="btn-primary">Contactanos</a>
+      <a href="#" class="btn-secondary">Ver trabajos</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat">
+    <div class="stat-num">+500</div>
+    <div class="stat-label">Eventos realizados</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">+50</div>
+    <div class="stat-label">Clientes felices</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Años de experiencia</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Rosario</div>
+    <div class="stat-label">Base de operaciones</div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-tag">Servicios</div>
+  <h2 class="section-title">Soluciones integrales para tu evento</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <span class="service-icon">🔊</span>
+      <h3>Sonido</h3>
+      <p>Equipamiento de alta calidad para una experiencia acústica impecable</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💡</span>
+      <h3>Iluminación</h3>
+      <p>Diseño lumínico que transforma cualquier espacio en un escenario único</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎧</span>
+      <h3>DJ</h3>
+      <p>Sets personalizados para crear la atmósfera perfecta en tu evento</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎬</span>
+      <h3>VJ</h3>
+      <p>Contenido visual y mapping para experiencias inmersivas</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✨</span>
+      <h3>Diseño</h3>
+      <p>Propuestas estéticas a medida para cada ocasión</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Hacemos realidad tu evento</h2>
+  <p>Rosario, Santa Fe · Consultanos sin compromiso</p>
+  <a href="#" class="btn-primary">Escribinos</a>
+  <div style="margin-top: 30px;">
+    <div class="social-links">
+      <a href="#" class="social-link">📷</a>
+      <a href="#" class="social-link">📱</a>
+      <a href="#" class="social-link">✉️</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 GS Técnica — Soluciones técnicas para eventos
+</footer>
+
+</body>
+</html>

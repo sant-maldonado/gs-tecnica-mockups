@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockups — GS Técnica</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #050505;
+  color: #fff;
+  min-height: 100vh;
+}
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #050505 0%, #0d0d0d 30%, #1a0510 70%, #0d0d0d 100%);
+}
+.bg-gradient::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(255,45,149,0.06) 0%, transparent 70%);
+  animation: drift 12s ease-in-out infinite;
+}
+.bg-gradient::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -5%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(255,45,149,0.04) 0%, transparent 70%);
+  animation: drift 15s ease-in-out infinite reverse;
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(4%, 2%); }
+  66% { transform: translate(-2%, -3%); }
+}
+
+header {
+  padding: 40px 50px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+header h1 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,45,149,0.6);
+  margin-bottom: 8px;
+}
+header h1 strong {
+  display: block;
+  font-size: 42px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  text-transform: none;
+  margin-top: 4px;
+}
+header h1 strong span {
+  background: linear-gradient(135deg, #ff2d95, #ff6bb5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+header p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 6px;
+  font-weight: 300;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 50px 100px;
+}
+
+.mockup-card {
+  margin-bottom: 60px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s;
+}
+.mockup-card:hover { border-color: rgba(255,45,149,0.2); }
+
+.mockup-header {
+  padding: 30px 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.mockup-info { flex: 1; }
+.mockup-info .number {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ff2d95;
+  margin-bottom: 4px;
+}
+.mockup-info h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.mockup-info p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.5;
+  max-width: 500px;
+}
+.mockup-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mockup-links a {
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+.mockup-links a:hover {
+  border-color: #ff2d95;
+  color: #ff2d95;
+  background: rgba(255,45,149,0.08);
+}
+
+.mockup-preview {
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: center;
+}
+.mockup-preview img {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.mockup-tags {
+  padding: 16px 32px 24px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tag {
+  padding: 4px 12px;
+  background: rgba(255,45,149,0.1);
+  border-radius: 50px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ff2d95;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 50px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  header { padding: 24px 20px; }
+  header h1 strong { font-size: 28px; }
+  .container { padding: 20px; }
+  .mockup-header { padding: 20px 20px 0; }
+  .mockup-info h2 { font-size: 18px; }
+  .mockup-preview { padding: 12px 12px 0; }
+  .mockup-tags { padding: 12px 20px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<header>
+  <h1>
+    Mockups
+    <strong>GS <span>Técnica</span></strong>
+  </h1>
+  <p>Tres propuestas de landing page para la marca — elegí la que más te guste o combiná ideas.</p>
+</header>
+
+<div class="container">
+
+  <div class="mockup-card">
+    <div class="mockup-header">
+      <div class="mockup-info">
+        <div class="number">Mockup 01</div>
+        <h2>Escénico</h2>
+        <p>Hero full-screen con iluminación rosa neón y aires de noche. Ideal para causar impacto y mostrar la energía de los eventos.</p>
+      </div>
+      <div class="mockup-links">
+        <a href="01-escenico.png" target="_blank">PNG</a>
+        <a href="01-escenico.html" target="_blank">HTML</a>
+      </div>
+    </div>
+    <div class="mockup-preview">
+      <a href="01-escenico.png" target="_blank"><img src="01-escenico.png" alt="Mockup Escénico"></a>
+    </div>
+    <div class="mockup-tags">
+      <span class="tag">Hero Impactante</span>
+      <span class="tag">Rosa Neón</span>
+      <span class="tag">Noche</span>
+      <span class="tag">Stats</span>
+    </div>
+  </div>
+
+  <div class="mockup-card">
+    <div class="mockup-header">
+      <div class="mockup-info">
+        <div class="number">Mockup 02</div>
+        <h2>Servicios</h2>
+        <p>Catálogo visual de servicios con buscador, filtros y tarjetas tipo producto. Perfecto para mostrar todo lo que ofrecen de forma clara.</p>
+      </div>
+      <div class="mockup-links">
+        <a href="02-servicios.png" target="_blank">PNG</a>
+        <a href="02-servicios.html" target="_blank">HTML</a>
+      </div>
+    </div>
+    <div class="mockup-preview">
+      <a href="02-servicios.png" target="_blank"><img src="02-servicios.png" alt="Mockup Servicios"></a>
+    </div>
+    <div class="mockup-tags">
+      <span class="tag">Catálogo</span>
+      <span class="tag">Filtros</span>
+      <span class="tag">Cards</span>
+      <span class="tag">UX Clara</span>
+    </div>
+  </div>
+
+  <div class="mockup-card">
+    <div class="mockup-header">
+      <div class="mockup-info">
+        <div class="number">Mockup 03</div>
+        <h2>Showcase</h2>
+        <p>Portfolio con galería en grid, gradiente animado y overlay al hover. Ideal para mostrar trabajos realizados y vender con visuales.</p>
+      </div>
+      <div class="mockup-links">
+        <a href="03-showcase.png" target="_blank">PNG</a>
+        <a href="03-showcase.html" target="_blank">HTML</a>
+      </div>
+    </div>
+    <div class="mockup-preview">
+      <a href="03-showcase.png" target="_blank"><img src="03-showcase.png" alt="Mockup Showcase"></a>
+    </div>
+    <div class="mockup-tags">
+      <span class="tag">Galería</span>
+      <span class="tag">Gradiente</span>
+      <span class="tag">Portfolio</span>
+      <span class="tag">Overlay</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  GS Técnica — Mockups 2026
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS Técnica - Servicios</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background: #0a0a0a;
+}
+
+/* Top bar */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 50px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #ff2d95;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ff2d95;
+}
+.logo span { color: #ff2d95; }
+.topbar nav { display: flex; gap: 28px; }
+.topbar nav a {
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+.topbar nav a:hover, .topbar nav a.active {
+  color: #fff;
+  border-bottom-color: #ff2d95;
+}
+
+/* Hero simple */
+.hero-simple {
+  margin-top: 70px;
+  padding: 80px 50px 60px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,45,149,0.06) 0%, transparent 100%);
+}
+.hero-simple h1 {
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.hero-simple h1 span { color: #ff2d95; }
+.hero-simple p {
+  font-size: 18px;
+  color: #888;
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+.search-bar {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 4px;
+  max-width: 400px;
+  width: 100%;
+}
+.search-bar input {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+.search-bar input::placeholder { color: #555; }
+.search-bar button {
+  background: #ff2d95;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.search-bar button:hover { background: #e62582; }
+
+/* Featured service */
+.featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1100px;
+  margin: 40px auto 0;
+  padding: 0 50px;
+  gap: 24px;
+}
+.featured-card {
+  border: 1px solid rgba(255,45,149,0.2);
+  border-radius: 12px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(255,45,149,0.08) 0%, rgba(255,45,149,0.02) 100%);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.featured-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,45,149,0.15) 0%, transparent 70%);
+}
+.featured-card .icon { font-size: 36px; margin-bottom: 16px; display: block; }
+.featured-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.featured-card p {
+  font-size: 14px;
+  color: #999;
+  line-height: 1.6;
+}
+
+/* Services grid */
+.services-section {
+  padding: 80px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.services-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+.services-section .section-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.services-section .section-header h2 small {
+  display: block;
+  font-size: 12px;
+  color: #ff2d95;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.tag-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tag {
+  padding: 6px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.tag.active, .tag:hover {
+  border-color: #ff2d95;
+  background: rgba(255,45,149,0.1);
+  color: #ff2d95;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.grid-card {
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.3s;
+  background: rgba(255,255,255,0.02);
+  position: relative;
+}
+.grid-card:hover {
+  border-color: rgba(255,45,149,0.3);
+  transform: translateY(-2px);
+  background: rgba(255,45,149,0.04);
+}
+.grid-card .badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(255,45,149,0.15);
+  color: #ff2d95;
+  margin-bottom: 12px;
+}
+.grid-card .icon { font-size: 28px; margin-bottom: 12px; display: block; }
+.grid-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.grid-card p {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.5;
+}
+.grid-card .price {
+  margin-top: 14px;
+  font-size: 11px;
+  color: #ff2d95;
+  font-weight: 600;
+}
+
+/* Contact bar */
+.contact-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 60px;
+  background: linear-gradient(135deg, rgba(255,45,149,0.1) 0%, transparent 100%);
+  border-top: 1px solid rgba(255,45,149,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.contact-bar h3 {
+  font-size: 22px;
+  font-weight: 700;
+}
+.contact-bar p {
+  color: #888;
+  font-size: 14px;
+  margin-top: 4px;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 36px;
+  background: #ff2d95;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+.btn:hover { background: #e62582; transform: translateY(-1px); }
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 14px 36px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+.btn-outline:hover { border-color: #ff2d95; color: #ff2d95; }
+
+/* Footer */
+footer {
+  padding: 40px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+footer .copy {
+  font-size: 12px;
+  color: #444;
+}
+footer .social a {
+  color: #555;
+  text-decoration: none;
+  margin-left: 16px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+footer .social a:hover { color: #ff2d95; }
+
+@media (max-width: 768px) {
+  .topbar { padding: 14px 20px; flex-direction: column; gap: 10px; }
+  .hero-simple { padding: 100px 20px 40px; }
+  .hero-simple h1 { font-size: 32px; }
+  .featured { grid-template-columns: 1fr; padding: 0 20px; }
+  .services-section { padding: 40px 20px; }
+  .grid-cards { grid-template-columns: 1fr 1fr; }
+  .services-section .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .contact-bar { flex-direction: column; gap: 20px; text-align: center; padding: 30px 20px; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-mark">GS</div>
+    GS<span>TÉCNICA</span>
+  </div>
+  <nav>
+    <a href="#" class="active">Servicios</a>
+    <a href="#">Galería</a>
+    <a href="#">Contacto</a>
+  </nav>
+</div>
+
+<section class="hero-simple">
+  <h1>Servicios <span>GS Técnica</span></h1>
+  <p>Ofrecemos soluciones técnicas integrales para eventos en Rosario y alrededores. Equipamiento profesional, creatividad y experiencia a tu servicio.</p>
+  <div class="search-bar">
+    <input type="text" placeholder="¿Qué servicio necesitas?">
+    <button>Buscar</button>
+  </div>
+
+  <div class="featured">
+    <div class="featured-card">
+      <span class="icon">🎵</span>
+      <h3>Pack Completo Sonido + Iluminación</h3>
+      <p>El combo ideal para tu evento. Incluye equipo de sonido profesional, cabezas móviles, barras LED y máquina de humo.</p>
+    </div>
+    <div class="featured-card">
+      <span class="icon">🎧</span>
+      <h3>Servicio de DJ + VJ</h3>
+      <p>Música en vivo y visuales sincronizados. Sets personalizados para bodas, eventos corporativos y fiestas privadas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="section-header">
+    <div>
+      <h2><small>Categorías</small>Nuestros servicios</h2>
+    </div>
+    <div class="tag-filter">
+      <span class="tag active">Todos</span>
+      <span class="tag">Sonido</span>
+      <span class="tag">Iluminación</span>
+      <span class="tag">DJ</span>
+      <span class="tag">VJ</span>
+      <span class="tag">Diseño</span>
+    </div>
+  </div>
+
+  <div class="grid-cards">
+    <div class="grid-card">
+      <span class="badge">Sonido</span>
+      <span class="icon">🔊</span>
+      <h4>Sistema de Sonido Profesional</h4>
+      <p>Line array, subwoofers y monitores de última generación para una cobertura acústica perfecta.</p>
+      <div class="price">Consultar presupuesto</div>
+    </div>
+    <div class="grid-card">
+      <span class="badge">Iluminación</span>
+      <span class="icon">💡</span>
+      <h4>Diseño Lumínico Escénico</h4>
+      <p>Cabezas móviles, wash, spot, barras LED y máquina de humo. Ambientación personalizada.</p>
+      <div class="price">Consultar presupuesto</div>
+    </div>
+    <div class="grid-card">
+      <span class="badge">DJ</span>
+      <span class="icon">🎧</span>
+      <h4>DJ en Vivo</h4>
+      <p>Sets musicales adaptados al estilo de tu evento. Equipo profesional CDJ + mixer.</p>
+      <div class="price">Consultar presupuesto</div>
+    </div>
+    <div class="grid-card">
+      <span class="badge">VJ</span>
+      <span class="icon">🎬</span>
+      <h4>Visuales y Mapping</h4>
+      <p>Proyección de contenido visual, video mapping y pantallas LED para experiencias inmersivas.</p>
+      <div class="price">Consultar presupuesto</div>
+    </div>
+    <div class="grid-card">
+      <span class="badge">Diseño</span>
+      <span class="icon">✨</span>
+      <h4>Diseño de Eventos</h4>
+      <p>Asesoría estética integral. Propuestas visuales y conceptuales para cada ocasión.</p>
+      <div class="price">Consultar presupuesto</div>
+    </div>
+    <div class="grid-card">
+      <span class="badge">Pack</span>
+      <span class="icon">🎯</span>
+      <h4>Producción Integral</h4>
+      <p>Coordinación completa del evento. Sonido, luces, DJ, VJ y diseño en un solo lugar.</p>
+      <div class="price">Consultar presupuesto</div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-bar">
+  <div>
+    <h3>¿Tenés un evento en mente?</h3>
+    <p>Rosario, Santa Fe · Respondemos en 24 hs</p>
+  </div>
+  <div style="display: flex; gap: 12px;">
+    <a href="#" class="btn">Solicitar presupuesto</a>
+    <a href="#" class="btn-outline">WhatsApp</a>
+  </div>
+</div>
+
+<footer>
+  <div class="copy">© 2026 GS Técnica · Todos los derechos reservados</div>
+  <div class="social">
+    <span style="color:#555; font-size:12px; letter-spacing:1px;">@gs_tecnica</span>
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">Mail</a>
+  </div>
+</footer>
+
+</body>
+</html>

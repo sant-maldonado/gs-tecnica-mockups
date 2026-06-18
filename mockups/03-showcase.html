@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS Técnica - Showcase</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background: #050505;
+  overflow-x: hidden;
+}
+
+/* Animated gradient bg */
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #050505 0%, #0d0d0d 30%, #1a0510 60%, #0d0d0d 100%);
+}
+.bg-gradient::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -20%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(255,45,149,0.08) 0%, transparent 70%);
+  animation: drift 12s ease-in-out infinite;
+}
+.bg-gradient::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(255,45,149,0.05) 0%, transparent 70%);
+  animation: drift 15s ease-in-out infinite reverse;
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(5%, 3%); }
+  66% { transform: translate(-3%, -2%); }
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5,5,5,0.8);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.logo {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #fff;
+}
+.logo strong { font-weight: 800; }
+.logo span { color: #ff2d95; font-weight: 300; }
+header nav { display: flex; gap: 24px; }
+header nav a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+header nav a:hover { color: #fff; }
+header nav a.active { color: #ff2d95; }
+
+/* Hero showcase */
+.hero-showcase {
+  padding: 160px 50px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.hero-showcase .eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,45,149,0.7);
+  margin-bottom: 20px;
+}
+.hero-showcase h1 {
+  font-size: 60px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.hero-showcase h1 span {
+  background: linear-gradient(135deg, #fff 0%, #ff2d95 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-showcase p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+.scroll-indicator {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(255,45,149,0.5), transparent);
+  margin-top: 20px;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Gallery */
+.gallery {
+  padding: 20px 50px 80px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+.gallery-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.gallery-header h2 strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-top: 4px;
+}
+.gallery-nav { display: flex; gap: 12px; }
+.gallery-nav button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.4);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-nav button:hover {
+  border-color: #ff2d95;
+  color: #ff2d95;
+}
+
+.grid-gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-auto-rows: 280px;
+  gap: 12px;
+}
+.grid-item {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.grid-item:nth-child(1) { grid-row: span 2; }
+.grid-item:nth-child(4) { grid-column: span 2; }
+
+.grid-item .thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+.grid-item:hover .thumb { transform: scale(1.05); }
+.grid-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8) 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.grid-item:hover .overlay { opacity: 1; }
+.grid-item .overlay .tag {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff2d95;
+  margin-bottom: 4px;
+}
+.grid-item .overlay h4 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Gradient placeholders for gallery items */
+.thumb {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  position: relative;
+}
+.thumb .emoji-bg {
+  font-size: 60px;
+  opacity: 0.3;
+}
+.thumb.color1 { background: linear-gradient(135deg, #1a0a12, #0d0508); }
+.thumb.color2 { background: linear-gradient(135deg, #1a1215, #0d080a); }
+.thumb.color3 { background: linear-gradient(135deg, #0d0d1a, #08080d); }
+.thumb.color4 { background: linear-gradient(135deg, #1a0f0a, #0d0805); }
+.thumb.color5 { background: linear-gradient(135deg, #120d1a, #08050d); }
+.thumb.color6 { background: linear-gradient(135deg, #0d1a15, #050d08); }
+
+/* Stats */
+.stats-showcase {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 50px;
+  gap: 4px;
+}
+.stat-item {
+  padding: 40px 20px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+}
+.stat-item .num {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff2d95, #ff6bb5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-item .label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* CTA */
+.cta-section {
+  padding: 80px 50px 100px;
+  text-align: center;
+  position: relative;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ff2d95, transparent);
+}
+.cta-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+.cta-section p {
+  color: rgba(255,255,255,0.4);
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+.cta-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 14px 40px;
+  background: #ff2d95;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+.btn-primary:hover { background: #e62582; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+.btn-secondary:hover { border-color: #ff2d95; color: #ff2d95; }
+
+/* Footer */
+footer {
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+}
+footer .social a {
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+footer .social a:hover { color: #ff2d95; }
+
+@media (max-width: 768px) {
+  header { padding: 16px 20px; flex-direction: column; gap: 12px; }
+  .hero-showcase { padding: 140px 20px 40px; }
+  .hero-showcase h1 { font-size: 32px; }
+  .gallery { padding: 20px; }
+  .grid-gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+  .grid-item:nth-child(1) { grid-row: span 1; }
+  .grid-item:nth-child(4) { grid-column: span 1; }
+  .stats-showcase { grid-template-columns: 1fr 1fr; padding: 0 20px; }
+  .cta-section { padding: 60px 20px; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<header>
+  <div class="logo"><strong>GS</strong> <span>·</span> técnica</div>
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#" class="active">Galería</a>
+    <a href="#">Servicios</a>
+    <a href="#">Contacto</a>
+  </nav>
+</header>
+
+<section class="hero-showcase">
+  <div class="eyebrow">Portfolio 2026</div>
+  <h1>Transformamos<br>espacios en <span>experiencias</span></h1>
+  <p>Cada evento es único. Conocé algunos de los trabajos que hicimos realidad.</p>
+  <div class="scroll-indicator"></div>
+</section>
+
+<section class="gallery">
+  <div class="gallery-header">
+    <div>
+      <h2><strong>Trabajos recientes</strong></h2>
+    </div>
+    <div class="gallery-nav">
+      <button>←</button>
+      <button>→</button>
+    </div>
+  </div>
+  <div class="grid-gallery">
+    <div class="grid-item">
+      <div class="thumb color1"><span class="emoji-bg">🎉</span></div>
+      <div class="overlay">
+        <div class="tag">Boda · 2025</div>
+        <h4>Power Wedding</h4>
+      </div>
+    </div>
+    <div class="grid-item">
+      <div class="thumb color2"><span class="emoji-bg">💼</span></div>
+      <div class="overlay">
+        <div class="tag">Corporativo · 2024</div>
+        <h4>Banco Macro</h4>
+      </div>
+    </div>
+    <div class="grid-item">
+      <div class="thumb color3"><span class="emoji-bg">🎂</span></div>
+      <div class="overlay">
+        <div class="tag">Cumpleaños · 2024</div>
+        <h4>Fiesta Privada</h4>
+      </div>
+    </div>
+    <div class="grid-item">
+      <div class="thumb color4"><span class="emoji-bg">🎶</span></div>
+      <div class="overlay">
+        <div class="tag">Evento Social · 2025</div>
+        <h4>Noche de Gala</h4>
+      </div>
+    </div>
+    <div class="grid-item">
+      <div class="thumb color5"><span class="emoji-bg">🎪</span></div>
+      <div class="overlay">
+        <div class="tag">Show en vivo · 2024</div>
+        <h4>Concierto íntimo</h4>
+      </div>
+    </div>
+    <div class="grid-item">
+      <div class="thumb color6"><span class="emoji-bg">✨</span></div>
+      <div class="overlay">
+        <div class="tag">Evento Social · 2025</div>
+        <h4>Celebración empresarial</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-showcase">
+  <div class="stat-item">
+    <div class="num">500+</div>
+    <div class="label">Eventos</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">10+</div>
+    <div class="label">Años</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">50+</div>
+    <div class="label">Clientes</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">⭐</div>
+    <div class="label">Profesionalismo</div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <h2>¿El próximo evento?</h2>
+  <p>Rosario, Santa Fe · Hacemos que tu evento brille</p>
+  <div class="cta-group">
+    <a href="#" class="btn-primary">Contactar</a>
+    <a href="#" class="btn-secondary">Ver servicios</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 GS Técnica</div>
+  <div class="social">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">info@gs-tecnica.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
